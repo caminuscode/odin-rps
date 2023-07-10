@@ -53,9 +53,26 @@ function getPlayerChoice() {
 }
 
 function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+
   for (let i = 0; i < 5; i++) {
     const playerSelection = getPlayerChoice();
     const computerSelection = getComputerChoice();
     console.log(playRound(playerSelection, computerSelection));
+    console.log("---------");
+    if (checkWinner(playerSelection, computerSelection) == "Player") {
+      playerScore++;
+    } else if (checkWinner(playerSelection, computerSelection) == "Computer") {
+      computerScore++;
+    }
+  }
+  console.log("Game Over");
+  if (playerScore > computerScore) {
+    return `You Win!`;
+  } else if (playerScore < computerScore) {
+    return `You Lose!`;
+  } else {
+    return `It's a Tie!`;
   }
 }
